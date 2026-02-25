@@ -5,7 +5,13 @@
     --text-color: #e6edf3;
     --glass-bg: rgba(22, 27, 34, 0.7);
     --glass-border: rgba(48, 54, 61, 0.7);
-    --nav-height: 70px;
+    --nav-height: 58px;
+    --space-1: 8px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --content-max: 1200px;
+    --hero-content-max: 1040px;
 }
 
 * {
@@ -68,12 +74,12 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 }
 
 .nav-container {
-    width: 90%;
-    max-width: 1200px;
+    width: min(92%, calc(var(--content-max) + 40px));
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     height: 100%;
+    gap: var(--space-3);
 }
 
 .nav-logo {
@@ -87,20 +93,25 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 }
 
 .nav-logo-img {
-    height: 40px;
+    height: 34px;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: var(--space-3);
+    margin-left: auto;
 }
 
 .nav-link {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1;
     transition: color 0.3s;
     position: relative;
+    padding: var(--space-1) 0;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -125,6 +136,7 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
     cursor: pointer;
     flex-direction: column;
     gap: 5px;
+    margin-left: var(--space-2);
 }
 
 .hamburger {
@@ -154,25 +166,31 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 /* Hero Section */
 .hero {
     position: relative;
-    min-height: calc(100vh - var(--nav-height));
+    min-height: max(680px, calc(100vh - var(--nav-height)));
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 5%;
+    padding: clamp(40px, 6vh, 72px) 5% clamp(28px, 5vh, 56px);
     overflow: hidden;
     text-align: center;
 }
 
 .hero-content {
-    max-width: 900px;
+    width: min(100%, var(--hero-content-max));
+    margin: 0 auto;
     z-index: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 2.2vh, 28px);
 }
 
 .hero-title {
     font-size: 3.5rem;
     line-height: 1.1;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    max-width: 20ch;
 }
 
 .hero-title-accent {
@@ -183,19 +201,27 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 .hero-subtitle {
     font-size: 1.1rem;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    max-width: 62ch;
 }
 
 .hero-stats {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: clamp(16px, 2vw, 32px);
+    width: min(100%, 560px);
+    margin: 0 auto;
+    justify-items: center;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+    min-width: 0;
+    min-height: 76px;
+    justify-content: center;
 }
 
 .stat-number {
@@ -210,12 +236,16 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 
 .hero-buttons {
     display: flex;
-    gap: 20px;
+    gap: var(--space-2);
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: min(100%, 520px);
+    margin-top: var(--space-1);
 }
 
 .btn {
-    padding: 12px 24px;
+    padding: 12px 20px;
     border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
@@ -224,8 +254,26 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    justify-content: center;
     text-decoration: none;
     font-size: 1rem;
+    min-height: 44px;
+}
+
+#logout-btn {
+    width: auto;
+    min-height: 36px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    line-height: 1;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
+
+.hero-buttons .btn {
+    flex: 1 1 220px;
+    min-width: 220px;
+    max-width: 252px;
 }
 
 .btn-primary {
@@ -281,7 +329,7 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -309,7 +357,7 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 
 /* Terminal Effect */
 .terminal-line {
-    margin-bottom: 20px;
+    margin-bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 4px;
@@ -333,19 +381,26 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 
 /* Features Section */
 .features-section {
-    padding: 80px 5%;
+    padding: clamp(72px, 8vh, 112px) 5%;
 }
 
 .section-title {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 50px;
+    margin-bottom: clamp(32px, 4vh, 56px);
 }
 
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+}
+
+.features-section .section-title,
+.features-section .features-grid {
+    max-width: var(--content-max);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .glass-card {
@@ -371,10 +426,10 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 /* CTA Section */
 .cta-section {
     position: relative;
-    padding: 100px 20px;
+    padding: clamp(80px, 9vh, 120px) 20px;
     text-align: center;
     overflow: hidden;
-    margin-top: 50px;
+    margin-top: clamp(28px, 4vh, 56px);
 }
 
 .cta-bg-image {
@@ -390,19 +445,19 @@ code, pre, .terminal-text, .flag-input, .terminal-line, .terminal-body {
 
 .cta-content h2 {
     font-size: 2.5rem;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-2);
 }
 
 .cta-content p {
-    margin-bottom: 30px;
+    margin-bottom: var(--space-3);
     color: rgba(255, 255, 255, 0.7);
 }
 
 /* Dashboard */
 .page-container {
-    max-width: 1200px;
+    max-width: var(--content-max);
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: clamp(32px, 5vh, 56px) 20px;
 }
 
 .dashboard-header {
@@ -846,6 +901,11 @@ pre {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .nav-toggle { display: flex; }
+
+    #logout-btn {
+        order: 2;
+        margin-left: auto;
+    }
     
     .nav-links {
         position: fixed;
@@ -855,8 +915,8 @@ pre {
         background: rgba(13, 17, 23, 0.95);
         backdrop-filter: blur(10px);
         flex-direction: column;
-        padding: 20px;
-        gap: 20px;
+        padding: var(--space-3);
+        gap: var(--space-2);
         transform: translateY(-150%);
         transition: transform 0.3s ease;
         border-bottom: 1px solid var(--glass-border);
@@ -864,10 +924,55 @@ pre {
     
     .nav-links.open { transform: translateY(0); }
     
-    .hero { flex-direction: column; height: auto; padding-top: 100px; text-align: center; }
-    .hero-content { margin-bottom: 50px; }
-    .hero-stats { justify-content: center; }
-    .hero-buttons { justify-content: center; }
+    .hero {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        padding-top: calc(var(--space-4) + var(--space-3));
+        text-align: center;
+    }
+
+    .hero-content {
+        width: min(100%, 640px);
+        gap: var(--space-2);
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+        width: min(100%, 280px);
+    }
+
+    .hero-buttons {
+        width: 100%;
+        max-width: 340px;
+        gap: var(--space-2);
+    }
+
+    .hero-buttons .btn {
+        min-width: 100%;
+        max-width: 100%;
+    }
     
     .challenge-layout { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1366px) {
+    .hero {
+        padding: clamp(56px, 9vh, 92px) 6% clamp(36px, 6vh, 64px);
+    }
+
+    .hero-content {
+        width: min(100%, 1100px);
+        gap: clamp(20px, 2.4vh, 32px);
+    }
+
+    .hero-stats {
+        width: min(100%, 640px);
+        gap: clamp(24px, 2.2vw, 40px);
+    }
+
+    .hero-buttons {
+        width: min(100%, 580px);
+    }
 }
