@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/dc77a631-6353-4710-9475-89d63fb85267.png" type="image/png">
+    <title>GDG Cyber Security CTF</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Matrix Canvas Background -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#landing" class="nav-logo" data-page="landing">
+                <img src="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/dc77a631-6353-4710-9475-89d63fb85267.png" alt="CTF Logo" class="nav-logo-img">
+                <span class="nav-logo-text">GDG<span class="accent-green">CTF</span></span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#landing" class="nav-link active" data-page="landing">Home</a>
+                <a href="#dashboard" class="nav-link" data-page="dashboard">Dashboard</a>
+                <a href="#challenge" class="nav-link" data-page="challenge">Challenge</a>
+                <a href="#leaderboard" class="nav-link" data-page="leaderboard">Leaderboard</a>
+            </div>
+            <button id="logout-btn" class="btn btn-outline btn-sm" data-logout type="button">Logout</button>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== LANDING PAGE ==================== -->
+    <section class="page active" id="landing">
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">root@gdg:~$</span>
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="GDG Cyber Security">GDG Cyber Security</span>
+                    <br>
+                    <span class="hero-title-accent">Capture The Flag</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A beginner-friendly hacking challenge designed to test your cybersecurity skills.
+                    <br>Decode, exploit, and capture flags across multiple domains.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="12">0</span>
+                        <span class="stat-label">Challenges</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="150">0</span>
+                        <span class="stat-label">Participants</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="48">0</span>
+                        <span class="stat-label">Hours</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary glow-green" data-navigate="dashboard">
+                        <span class="btn-icon">▶</span> Start Challenge
+                    </button>
+                    <button class="btn btn-outline" data-navigate="leaderboard">
+                        <span class="btn-icon">🏆</span> Leaderboard
+                    </button>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/beb54216-2159-4109-b6fe-ebe752e8d973.png" alt="Cyber Background" class="hero-bg-image">
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2 class="section-title">Challenge <span class="accent-green">Categories</span></h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card">
+                    <div class="feature-icon green">🔐</div>
+                    <h3>Cryptography</h3>
+                    <p>Break ciphers, decode messages, and crack encryption algorithms.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon blue">🌐</div>
+                    <h3>Web Exploitation</h3>
+                    <p>Find vulnerabilities in web applications and exploit them.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon green">🔍</div>
+                    <h3>Forensics</h3>
+                    <p>Analyze files, network captures, and recover hidden data.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon blue">⚙️</div>
+                    <h3>Reverse Engineering</h3>
+                    <p>Decompile binaries and understand program logic.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon green">🐧</div>
+                    <h3>Linux</h3>
+                    <p>Master the command line and exploit system misconfigurations.</p>
+                </div>
+                <div class="feature-card glass-card">
+                    <div class="feature-icon blue">🧩</div>
+                    <h3>Miscellaneous</h3>
+                    <p>Creative challenges that test your overall hacking mindset.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <img src="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/5bbeefee-e33a-4165-9c8d-f5412b48dcf3.png" alt="Cyber Grid" class="cta-bg-image">
+            <div class="cta-content">
+                <h2>Ready to <span class="accent-green">Hack</span>?</h2>
+                <p>Join hundreds of participants in the ultimate cybersecurity challenge.</p>
+                <button class="btn btn-primary glow-green" data-navigate="dashboard">Enter the Arena</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DASHBOARD PAGE ==================== -->
+    <section class="page" id="dashboard">
+        <div class="page-container">
+            <div class="dashboard-header">
+                <div class="welcome-section">
+                    <h1 class="page-title">Welcome, <span class="accent-green">Team_Cipher</span></h1>
+                    <p class="page-subtitle">Select a challenge to begin. Good luck, hacker.</p>
+                </div>
+                <div class="dashboard-stats">
+                    <div class="mini-stat glass-card">
+                        <span class="mini-stat-value accent-green">3/12</span>
+                        <span class="mini-stat-label">Solved</span>
+                    </div>
+                    <div class="mini-stat glass-card">
+                        <span class="mini-stat-value accent-blue">450</span>
+                        <span class="mini-stat-label">Points</span>
+                    </div>
+                    <div class="mini-stat glass-card">
+                        <span class="mini-stat-value">#7</span>
+                        <span class="mini-stat-label">Rank</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="crypto">Cryptography</button>
+                <button class="filter-tab" data-filter="web">Web</button>
+                <button class="filter-tab" data-filter="forensics">Forensics</button>
+                <button class="filter-tab" data-filter="reverse">Reverse</button>
+                <button class="filter-tab" data-filter="linux">Linux</button>
+                <button class="filter-tab" data-filter="misc">Misc</button>
+            </div>
+
+            <!-- Challenge Cards Grid -->
+            <div class="challenges-grid">
+                <!-- Card 1 - Completed -->
+                <div class="challenge-card glass-card" data-category="crypto" data-status="completed">
+                    <div class="card-header">
+                        <span class="card-category">🔐 Cryptography</span>
+                        <span class="badge badge-easy">Easy</span>
+                    </div>
+                    <h3 class="card-title">Caesar's Secret</h3>
+                    <p class="card-desc">Decrypt the ancient cipher to reveal the hidden message.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-green">100</span> pts</span>
+                        <span class="status-badge status-completed">✓ Completed</span>
+                    </div>
+                    <button class="btn btn-sm btn-completed" disabled>Solved</button>
+                </div>
+
+                <!-- Card 2 - Completed -->
+                <div class="challenge-card glass-card" data-category="web" data-status="completed">
+                    <div class="card-header">
+                        <span class="card-category">🌐 Web</span>
+                        <span class="badge badge-easy">Easy</span>
+                    </div>
+                    <h3 class="card-title">Hidden Admin</h3>
+                    <p class="card-desc">Find the secret admin panel hidden in the website.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-green">100</span> pts</span>
+                        <span class="status-badge status-completed">✓ Completed</span>
+                    </div>
+                    <button class="btn btn-sm btn-completed" disabled>Solved</button>
+                </div>
+
+                <!-- Card 3 - Completed -->
+                <div class="challenge-card glass-card" data-category="forensics" data-status="completed">
+                    <div class="card-header">
+                        <span class="card-category">🔍 Forensics</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">Packet Hunter</h3>
+                    <p class="card-desc">Analyze the network capture to find leaked credentials.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-green">250</span> pts</span>
+                        <span class="status-badge status-completed">✓ Completed</span>
+                    </div>
+                    <button class="btn btn-sm btn-completed" disabled>Solved</button>
+                </div>
+
+                <!-- Card 4 - Unlocked -->
+                <div class="challenge-card glass-card" data-category="crypto" data-status="unlocked">
+                    <div class="card-header">
+                        <span class="card-category">🔐 Cryptography</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">RSA Breakdown</h3>
+                    <p class="card-desc">Exploit a weak RSA implementation to recover the plaintext.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-blue">200</span> pts</span>
+                        <span class="status-badge status-unlocked">🔓 Unlocked</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary glow-green" data-navigate="challenge">Solve</button>
+                </div>
+
+                <!-- Card 5 - Unlocked -->
+                <div class="challenge-card glass-card" data-category="web" data-status="unlocked">
+                    <div class="card-header">
+                        <span class="card-category">🌐 Web</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">SQL Injection 101</h3>
+                    <p class="card-desc">Bypass the login form using classic SQL injection techniques.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-blue">200</span> pts</span>
+                        <span class="status-badge status-unlocked">🔓 Unlocked</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary glow-green" data-navigate="challenge">Solve</button>
+                </div>
+
+                <!-- Card 6 - Unlocked -->
+                <div class="challenge-card glass-card" data-category="linux" data-status="unlocked">
+                    <div class="card-header">
+                        <span class="card-category">🐧 Linux</span>
+                        <span class="badge badge-easy">Easy</span>
+                    </div>
+                    <h3 class="card-title">Permission Denied</h3>
+                    <p class="card-desc">Escalate your privileges to read the protected flag file.</p>
+                    <div class="card-footer">
+                        <span class="card-points"><span class="accent-blue">150</span> pts</span>
+                        <span class="status-badge status-unlocked">🔓 Unlocked</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary glow-green" data-navigate="challenge">Solve</button>
+                </div>
+
+                <!-- Card 7 - Locked -->
+                <div class="challenge-card glass-card locked" data-category="reverse" data-status="locked">
+                    <div class="card-header">
+                        <span class="card-category">⚙️ Reverse</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">Binary Secrets</h3>
+                    <p class="card-desc">Reverse engineer the binary to find the hardcoded flag.</p>
+                    <div class="card-footer">
+                        <span class="card-points">250 pts</span>
+                        <span class="status-badge status-locked">🔒 Locked</span>
+                    </div>
+                    <button class="btn btn-sm btn-locked" disabled>Locked</button>
+                </div>
+
+                <!-- Card 8 - Locked -->
+                <div class="challenge-card glass-card locked" data-category="misc" data-status="locked">
+                    <div class="card-header">
+                        <span class="card-category">🧩 Misc</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">Steganography</h3>
+                    <p class="card-desc">A secret message is hidden within this innocent-looking image.</p>
+                    <div class="card-footer">
+                        <span class="card-points">200 pts</span>
+                        <span class="status-badge status-locked">🔒 Locked</span>
+                    </div>
+                    <button class="btn btn-sm btn-locked" disabled>Locked</button>
+                </div>
+
+                <!-- Card 9 - Locked -->
+                <div class="challenge-card glass-card locked" data-category="web" data-status="locked">
+                    <div class="card-header">
+                        <span class="card-category">🌐 Web</span>
+                        <span class="badge badge-medium">Medium</span>
+                    </div>
+                    <h3 class="card-title">XSS Playground</h3>
+                    <p class="card-desc">Craft a payload to execute JavaScript in the vulnerable app.</p>
+                    <div class="card-footer">
+                        <span class="card-points">300 pts</span>
+                        <span class="status-badge status-locked">🔒 Locked</span>
+                    </div>
+                    <button class="btn btn-sm btn-locked" disabled>Locked</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHALLENGE PAGE ==================== -->
+    <section class="page" id="challenge">
+        <div class="page-container">
+            <div class="challenge-detail">
+                <div class="challenge-detail-header">
+                    <button class="btn btn-outline btn-sm" data-navigate="dashboard">← Back to Dashboard</button>
+                    <div class="challenge-meta">
+                        <span class="badge badge-medium">Medium</span>
+                        <span class="card-category">🔐 Cryptography</span>
+                        <span class="card-points"><span class="accent-blue">200</span> pts</span>
+                    </div>
+                </div>
+
+                <h1 class="page-title">RSA <span class="accent-green">Breakdown</span></h1>
+
+                <div class="challenge-layout">
+                    <!-- Left Column: Description -->
+                    <div class="challenge-info">
+                        <div class="info-card glass-card">
+                            <h3 class="info-card-title">📋 Description</h3>
+                            <div class="info-card-content">
+                                <p>You've intercepted an encrypted message that was protected using RSA encryption. However, the implementation has a critical flaw — the prime numbers used are too small!</p>
+                                <p>Your mission: Factor the public key modulus <code>n</code>, recover the private key, and decrypt the message to reveal the flag.</p>
+                                <div class="code-block">
+                                    <div class="code-header">
+                                        <span>challenge_data.txt</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code>n = 3233
+e = 17
+ciphertext = 2790
+
+# Find p and q such that p * q = n
+# Then compute the private key d
+# Decrypt: plaintext = ciphertext^d mod n</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hints Section -->
+                        <div class="info-card glass-card">
+                            <div class="hint-header" id="hint-toggle">
+                                <h3 class="info-card-title">💡 Hints</h3>
+                                <span class="hint-arrow">▼</span>
+                            </div>
+                            <div class="hint-content" id="hint-content">
+                                <div class="hint-item">
+                                    <span class="hint-number">Hint 1</span>
+                                    <p>The number 3233 can be factored into two prime numbers. Try small primes.</p>
+                                </div>
+                                <div class="hint-item">
+                                    <span class="hint-number">Hint 2</span>
+                                    <p>Remember: φ(n) = (p-1)(q-1), and d = e⁻¹ mod φ(n)</p>
+                                </div>
+                                <div class="hint-item">
+                                    <span class="hint-number">Hint 3</span>
+                                    <p>p = 61, q = 53. Now compute the rest!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Submit -->
+                    <div class="challenge-submit">
+                        <div class="info-card glass-card">
+                            <h3 class="info-card-title">🚩 Submit Flag</h3>
+                            <div class="flag-input-group">
+                                <div class="flag-input-wrapper">
+                                    <span class="flag-prefix">GDG{</span>
+                                    <input type="text" class="flag-input" id="flag-input" placeholder="enter_flag_here" autocomplete="off">
+                                    <span class="flag-suffix">}</span>
+                                </div>
+                                <button class="btn btn-primary glow-green btn-submit" id="submit-flag">
+                                    Submit Flag
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Terminal Feedback -->
+                        <div class="info-card glass-card terminal-card">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span>
+                                    <span class="dot yellow"></span>
+                                    <span class="dot green"></span>
+                                </div>
+                                <span class="terminal-title">terminal</span>
+                            </div>
+                            <div class="terminal-body" id="terminal-body">
+                                <div class="terminal-line-output">
+                                    <span class="terminal-prompt-sm">root@ctf:~$</span>
+                                    <span>./submit_flag.sh</span>
+                                </div>
+                                <div class="terminal-line-output">
+                                    <span class="terminal-text-muted">[*] Waiting for flag input...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Challenge Timer -->
+                        <div class="info-card glass-card">
+                            <h3 class="info-card-title">⏱️ Time Elapsed</h3>
+                            <div class="timer" id="challenge-timer">00:00:00</div>
+                            <div class="timer-bar">
+                                <div class="timer-bar-fill" id="timer-bar-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LEADERBOARD PAGE ==================== -->
+    <section class="page" id="leaderboard">
+        <div class="leaderboard-bg-layer">
+            <img src="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/d6e2a1b6-2886-4a1e-9373-ed31f8d4ba2a.png" alt="Trophy Background" class="leaderboard-bg-image">
+            <div class="leaderboard-overlay"></div>
+        </div>
+        <div class="page-container">
+            <div class="leaderboard-header">
+                <h1 class="page-title">
+                    Leader<span class="accent-green">board</span>
+                </h1>
+                <p class="page-subtitle">Real-time rankings of all participating teams</p>
+            </div>
+
+            <!-- Top 3 Podium -->
+            <div class="podium">
+                <div class="podium-item silver">
+                    <div class="podium-avatar">🥈</div>
+                    <div class="podium-name">ByteBusters</div>
+                    <div class="podium-score">1850 pts</div>
+                    <div class="podium-bar bar-2">
+                        <span class="podium-rank">2</span>
+                    </div>
+                </div>
+                <div class="podium-item gold">
+                    <div class="podium-avatar">🥇</div>
+                    <div class="podium-name">NullPointers</div>
+                    <div class="podium-score">2100 pts</div>
+                    <div class="podium-bar bar-1">
+                        <span class="podium-rank">1</span>
+                    </div>
+                </div>
+                <div class="podium-item bronze">
+                    <div class="podium-avatar">🥉</div>
+                    <div class="podium-name">CipherSquad</div>
+                    <div class="podium-score">1650 pts</div>
+                    <div class="podium-bar bar-3">
+                        <span class="podium-rank">3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Leaderboard Table -->
+            <div class="leaderboard-table-wrapper glass-card">
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Team</th>
+                            <th>Challenges</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="rank-gold">
+                            <td><span class="rank-badge rank-1">1</span></td>
+                            <td><span class="team-name">NullPointers</span></td>
+                            <td>10/12</td>
+                            <td><span class="score-value">2100</span></td>
+                        </tr>
+                        <tr class="rank-silver">
+                            <td><span class="rank-badge rank-2">2</span></td>
+                            <td><span class="team-name">ByteBusters</span></td>
+                            <td>9/12</td>
+                            <td><span class="score-value">1850</span></td>
+                        </tr>
+                        <tr class="rank-bronze">
+                            <td><span class="rank-badge rank-3">3</span></td>
+                            <td><span class="team-name">CipherSquad</span></td>
+                            <td>8/12</td>
+                            <td><span class="score-value">1650</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">4</span></td>
+                            <td><span class="team-name">HexHunters</span></td>
+                            <td>7/12</td>
+                            <td><span class="score-value">1400</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">5</span></td>
+                            <td><span class="team-name">RootAccess</span></td>
+                            <td>7/12</td>
+                            <td><span class="score-value">1350</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">6</span></td>
+                            <td><span class="team-name">PacketStorm</span></td>
+                            <td>6/12</td>
+                            <td><span class="score-value">1100</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><span class="rank-badge">7</span></td>
+                            <td><span class="team-name">Team_Cipher <span class="you-badge">YOU</span></span></td>
+                            <td>3/12</td>
+                            <td><span class="score-value">450</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">8</span></td>
+                            <td><span class="team-name">BinBreakers</span></td>
+                            <td>3/12</td>
+                            <td><span class="score-value">400</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">9</span></td>
+                            <td><span class="team-name">ZeroDayZ</span></td>
+                            <td>2/12</td>
+                            <td><span class="score-value">300</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge">10</span></td>
+                            <td><span class="team-name">ScriptKiddos</span></td>
+                            <td>1/12</td>
+                            <td><span class="score-value">100</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://mgx-backend-cdn.metadl.com/generate/images/912969/2026-02-23/dc77a631-6353-4710-9475-89d63fb85267.png" alt="Logo" class="footer-logo-img">
+                <span>GDG Cyber Security CTF</span>
+            </div>
+            <p class="footer-text">© 2026 Google Developer Groups. Built with 💚 for the security community.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Rules</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Discord</a>
+                <a href="#" class="footer-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/script.js" defer></script>
+</body>
+</html>
